@@ -14,8 +14,11 @@ class CreateUser extends Component
 {
     public $title = 'Create User';
 
+    #[Validate('required|numeric|max:11|unique:users')]
+    public $nim;
+
     #[Validate('required|unique:users')]
-    public $nim, $phone, $email;
+    public $phone, $email;
 
     #[Validate('required')]
     public $name, $gender, $fakultas, $prodi;

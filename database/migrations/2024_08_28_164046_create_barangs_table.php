@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('type');
             $table->integer('qty');
-            $table->text('qr');
         });
     }
 

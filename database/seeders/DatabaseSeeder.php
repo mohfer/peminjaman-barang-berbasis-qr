@@ -30,9 +30,8 @@ class DatabaseSeeder extends Seeder
         DB::table('items')->insert([
             'code' => 'INF001',
             'name' => 'Infocus',
-            'type' => 'Elektronik',
+            'type' => 'Peralatan Presentasi',
             'qty' => 20,
-            'qr' => 'test',
         ]);
 
         DB::table('borrowings')->insert([

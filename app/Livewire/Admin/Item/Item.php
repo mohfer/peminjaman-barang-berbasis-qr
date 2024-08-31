@@ -10,16 +10,16 @@ class Item extends Component
 {
     use WithPagination;
 
-    public $title = 'Users';
+    public $title = 'Items';
 
     public $search = '';
 
     public function delete($id)
     {
-        $user = ModelsItem::findOrFail($id);
-        $user->delete();
+        $item = ModelsItem::findOrFail($id);
+        $item->delete();
 
-        notify()->success('User berhasil dihapus');
+        notify()->success('Item berhasil dihapus');
     }
 
     public function updatingSearch()
@@ -31,9 +31,11 @@ class Item extends Component
     {
         view()->share('title', $this->title);
 
-        $user = ModelsItem::where('nama', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('nim', 'LIKE', '%' . $this->search . '%')->simplePaginate(5);
+        $item = ModelsItem::where('name', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('code', 'LIKE', '%' . $this->search . '%')->simplePaginate(5);
 
-        return view('livewire.admin.item.item');
+        return view('livewire.admin.item.item', [
+            'items' => $item,
+        ]);
     }
 }

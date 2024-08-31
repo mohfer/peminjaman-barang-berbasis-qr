@@ -27,4 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/items', Item::class)->name('items');
     Route::get('/items/create', CreateItem::class)->name('create-items');
     Route::get('/items/{id}/edit', UpdateItem::class)->name('update-items');
+
+    Route::get('/pdf', function() {
+        return view('pdf.qrcodes');
+    });
 });

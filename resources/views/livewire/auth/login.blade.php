@@ -8,18 +8,27 @@
                     <h1 class="text-5xl font-bold text-center">LOGIN</h1>
                 </div>
                 <div class="mb-4">
-                    <input type="number" id="nim" wire:model.blur="nim"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
-                        placeholder="Nim">
+                    <div x-data="{
+                        nim: @entangle('nim'),
+                        validateInput(event) {
+                            const cleanedValue = event.target.value.replace(/\D/g, '');
+                            event.target.value = cleanedValue;
+                            this.nim = cleanedValue;
+                        }
+                    }">
+                        <input type="text" placeholder="Nim" x-model="nim" wire:model.defer="nim"
+                            @input="validateInput($event)" @keypress="$event.charCode >= 48 && $event.charCode <= 57"
+                            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm">
+                    </div>
                     @error('nim')
-                        <div class="text-red-500">
+                        <div class="text-red-500 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
 
                 <div x-data="{ showPassword: false }" class="mb-6 relative">
-                    <input :type="showPassword ? 'text' : 'password'" id="password" wire:model.blur="password"
+                    <input :type="showPassword ? 'text' : 'password'" id="password" wire:model="password"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
                         placeholder="Password">
                     <button @click="showPassword = !showPassword" type="button"
@@ -38,7 +47,7 @@
                         </svg>
                     </button>
                     @error('password')
-                        <div class="text-red-500">
+                        <div class="text-red-500 text-sm">
                             {{ $message }}
                         </div>
                     @enderror

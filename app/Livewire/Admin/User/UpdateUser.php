@@ -13,8 +13,11 @@ class UpdateUser extends Component
 
     public $user;
 
+    #[Validate('required|numeric|max:11|unique:users')]
+    public $nim;
+
     #[Validate('required|unique:users')]
-    public $nim, $phone, $email;
+    public $phone, $email;
 
     #[Validate('required')]
     public $name, $gender, $fakultas, $prodi;
@@ -34,7 +37,7 @@ class UpdateUser extends Component
     public function update()
     {
         $validatedData = $this->validate([
-            'nim' => ['required', Rule::unique('users')->ignore($this->user->id)],
+            'nim' => ['required', 'max:11', Rule::unique('users')->ignore($this->user->id)],
             'phone' => ['required', Rule::unique('users')->ignore($this->user->id)],
             'email' => ['required', Rule::unique('users')->ignore($this->user->id)],
             'name' => 'required',
