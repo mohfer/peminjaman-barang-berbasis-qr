@@ -19,7 +19,7 @@
                             alt="Profile Picture" class="rounded-full w-24 h-24">
                     </div>
                     <div class="text-center mb-2">
-                        <h2 class="font-bold text-xl">{{ $user->name }}</h2>
+                        <h2 class="font-bold text-xl">{{ $user->nama }}</h2>
                         <p class="text-gray-700">{{ $user->nim }}</p>
                     </div>
                     <div class="flex justify-center mt-4">

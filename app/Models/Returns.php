@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Barang extends Model
+class Returns extends Model
 {
     use HasFactory;
 
@@ -14,10 +14,8 @@ class Barang extends Model
         'id'
     ];
 
-    public $timestamps = false;
-
-    public function peminjamans(): HasMany
+    public function borrowing(): HasOne
     {
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasOne(Borrowing::class);
     }
 }

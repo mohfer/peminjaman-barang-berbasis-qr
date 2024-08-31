@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin\Item;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\User as ModelsUser;
+use App\Models\Item as ModelsItem;
 
-class User extends Component
+class Item extends Component
 {
     use WithPagination;
 
@@ -16,7 +16,7 @@ class User extends Component
 
     public function delete($id)
     {
-        $user = ModelsUser::findOrFail($id);
+        $user = ModelsItem::findOrFail($id);
         $user->delete();
 
         notify()->success('User berhasil dihapus');
@@ -31,11 +31,9 @@ class User extends Component
     {
         view()->share('title', $this->title);
 
-        $user = ModelsUser::where('name', 'LIKE', '%' . $this->search . '%')
+        $user = ModelsItem::where('nama', 'LIKE', '%' . $this->search . '%')
             ->orWhere('nim', 'LIKE', '%' . $this->search . '%')->simplePaginate(5);
 
-        return view('livewire.admin.user.user', [
-            'users' => $user,
-        ]);
+        return view('livewire.admin.item.item');
     }
 }

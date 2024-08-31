@@ -8,10 +8,10 @@
                     <h1 class="text-5xl font-bold text-center">LOGIN</h1>
                 </div>
                 <div class="mb-4">
-                    <input type="number" id="username" wire:model.live="username"
+                    <input type="number" id="nim" wire:model.blur="nim"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
-                        placeholder="Username">
-                    @error('username')
+                        placeholder="Nim">
+                    @error('nim')
                         <div class="text-red-500">
                             {{ $message }}
                         </div>
@@ -19,7 +19,7 @@
                 </div>
 
                 <div x-data="{ showPassword: false }" class="mb-6 relative">
-                    <input :type="showPassword ? 'text' : 'password'" id="password" wire:model.live="password"
+                    <input :type="showPassword ? 'text' : 'password'" id="password" wire:model.blur="password"
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
                         placeholder="Password">
                     <button @click="showPassword = !showPassword" type="button"

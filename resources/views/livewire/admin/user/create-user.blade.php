@@ -20,42 +20,42 @@
             </div>
 
             <form wire:submit.prevent='save' class="w-full md:w-2/3 flex flex-col justify-center gap-2 pl-4 pr-4 mt-4">
-                <input type="number" placeholder="Nim" wire:model.live='nim'
+                <input type="number" placeholder="Nim" wire:model.blur='nim'
                     class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600">
                 @error('nim')
                     <div class="text-red-500">
                         {{ $message }}
                     </div>
                 @enderror
-                <input type="name" placeholder="Nama" wire:model.live='nama'
+                <input type="name" placeholder="Nama" wire:model.blur='name'
                     class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600">
-                @error('nama')
+                @error('name')
                     <div class="text-red-500">
                         {{ $message }}
                     </div>
                 @enderror
-                <select wire:model.live='jk'
+                <select wire:model.blur='gender'
                     class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600">
                     <option hidden>Jenis Kelamin</option>
                     <option>Laki-laki</option>
                     <option>Perempuan</option>
                 </select>
-                @error('jk')
+                @error('gender')
                     <div class="text-red-500">
                         {{ $message }}
                     </div>
                 @enderror
                 <div>
-                    <input type="tel" placeholder="No. Telp" wire:model.live='telp'
+                    <input type="number" placeholder="No. Telp" wire:model.blur='phone'
                         class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 w-full">
-                    @error('telp')
+                    @error('phone')
                         <div class="text-red-500 text-sm mt-1">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
                 <div>
-                    <input type="email" placeholder="Email" wire:model.live='email'
+                    <input type="email" placeholder="Email" wire:model.blur='email'
                         class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 w-full">
                     @error('email')
                         <div class="text-red-500 text-sm mt-1">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="grid grid-cols-1 gap-2">
                     <div>
-                        <select wire:model.live='fakultas'
+                        <select wire:model.blur='fakultas'
                             class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 w-full">
                             <option hidden>Fakultas</option>
                             <option>Fakultas Teknik</option>
@@ -78,7 +78,7 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="text" placeholder="Prodi" wire:model.live='prodi'
+                        <input type="text" placeholder="Prodi" wire:model.blur='prodi'
                             class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600 w-full">
                         @error('prodi')
                             <div class="text-red-500 text-sm mt-1">

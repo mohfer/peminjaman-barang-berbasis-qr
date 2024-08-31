@@ -18,28 +18,28 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'nim' => 112233,
-            'nama' => 'Mohamad Ferdiansyah',
-            'jk' => 'Laki-laki',
+            'name' => 'Mohamad Ferdiansyah',
+            'gender' => 'Laki-laki',
             'fakultas' => 'Fakultas Teknik',
             'prodi' => 'Informatika',
-            'telp' => '080808080808',
+            'phone' => '080808080808',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
-        DB::table('barangs')->insert([
-            'kode' => 'INF001',
-            'nama' => 'Infocus',
-            'jenis' => 'Elektronik',
-            'jumlah' => 20,
+        DB::table('items')->insert([
+            'code' => 'INF001',
+            'name' => 'Infocus',
+            'type' => 'Elektronik',
+            'qty' => 20,
             'qr' => 'test',
         ]);
 
-        DB::table('peminjamans')->insert([
-            'id_barang' => 1,
-            'id_user' => 1,
-            'jumlah' => '5',
-            'waktu' => '2024-08-27 22:35:34',
+        DB::table('borrowings')->insert([
+            'item_id' => 1,
+            'user_id' => 1,
+            'qty' => '5',
+            'time' => '2024-08-27 22:35:34',
         ]);
     }
 }

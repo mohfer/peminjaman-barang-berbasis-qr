@@ -11,17 +11,17 @@ class Login extends Component
     public $title = 'Login';
 
     #[Validate('required')]
-    public $username, $password;
+    public $nim, $password;
 
     public function login()
     {
         $this->validate();
 
-        if (Auth::attempt(['nim' => $this->username, 'password' => $this->password])) {
+        if (Auth::attempt(['nim' => $this->nim, 'password' => $this->password])) {
             notify()->success('Login Berhasil');
             return $this->redirect(route('dashboard-admin'), navigate: true);
         } else {
-            notify()->error('Login Gagal');
+            notify()->error('NIM atau Password Tidak Sesuai');
             $this->password = '';
         }
     }

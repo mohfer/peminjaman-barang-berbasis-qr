@@ -14,20 +14,20 @@ class UpdateUser extends Component
     public $user;
 
     #[Validate('required|unique:users')]
-    public $nim, $telp, $email;
+    public $nim, $phone, $email;
 
     #[Validate('required')]
-    public $nama, $jk, $fakultas, $prodi;
+    public $name, $gender, $fakultas, $prodi;
 
     public function mount($id)
     {
         $this->user = User::findOrFail($id);
         $this->nim = $this->user->nim;
-        $this->nama = $this->user->nama;
-        $this->jk = $this->user->jk;
+        $this->name = $this->user->name;
+        $this->gender = $this->user->gender;
         $this->fakultas = $this->user->fakultas;
         $this->prodi = $this->user->prodi;
-        $this->telp = $this->user->telp;
+        $this->phone = $this->user->phone;
         $this->email = $this->user->email;
     }
 
@@ -35,10 +35,10 @@ class UpdateUser extends Component
     {
         $validatedData = $this->validate([
             'nim' => ['required', Rule::unique('users')->ignore($this->user->id)],
-            'telp' => ['required', Rule::unique('users')->ignore($this->user->id)],
+            'phone' => ['required', Rule::unique('users')->ignore($this->user->id)],
             'email' => ['required', Rule::unique('users')->ignore($this->user->id)],
-            'nama' => 'required',
-            'jk' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
             'fakultas' => 'required',
             'prodi' => 'required',
         ]);
@@ -46,7 +46,6 @@ class UpdateUser extends Component
         $this->user->update($validatedData);
 
         notify()->success('User berhasil diupdate!');
-        return $this->redirect(route('users'), navigate: true);
     }
 
     public function render()

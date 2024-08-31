@@ -13,7 +13,7 @@
             </a>
         </div>
         <div class="md:w-1/2 xl:w-1/3 bg-[#D4EAE6] hover:bg-[#b6dbd4] p-4 mb-4 rounded-md">
-            <a href="" wire:navigate>
+            <a href="{{ route('items') }}" wire:navigate>
                 <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-4 w-60 h-60" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
@@ -24,7 +24,7 @@
                     <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                     <line x1="12" y1="22.08" x2="12" y2="12"></line>
                 </svg>
-                <h2 class="text-lg font-semibold text-center">Kelola Barang</h2>
+                <h2 class="text-lg font-semibold text-center">Kelola Item</h2>
             </a>
         </div>
     </div>

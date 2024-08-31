@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengembalians', function (Blueprint $table) {
+        Schema::create('returns', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_peminjaman');
-            $table->integer('jumlah');
-            $table->dateTime('waktu');
+            $table->unsignedBigInteger('borrowing_id');
+            $table->integer('qty');
+            $table->dateTime('time');
 
-            $table->foreign('id_peminjaman')->references('id')->on('peminjamans')->onDelete('cascade');
+            $table->foreign('borrowing_id')->references('id')->on('borrowings')->onDelete('cascade');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengembalians');
+        Schema::dropIfExists('returns');
     }
 };

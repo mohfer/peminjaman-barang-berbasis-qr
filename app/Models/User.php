@@ -46,8 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function peminjamans(): HasMany
+    public function borrowings(): HasMany
     {
-        return $this->hasMany(Peminjaman::class, 'id_user');
+        return $this->hasMany(Borrowing::class, 'id_user');
     }
 }

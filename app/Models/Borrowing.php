@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Peminjaman extends Model
+class Borrowing extends Model
 {
     use HasFactory;
 
-    protected $table = 'peminjamans';
+    protected $table = 'borrowings';
 
     protected $guarded = [
         'id'
     ];
 
-    public function barang(): BelongsTo
+    public function item(): BelongsTo
     {
-        return $this->belongsTo(Barang::class, 'id_barang');
+        return $this->belongsTo(Item::class, 'id_barang');
     }
 
     public function user(): BelongsTo
@@ -27,8 +27,8 @@ class Peminjaman extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function pengembalian(): HasOne
+    public function return(): HasOne
     {
-        return $this->hasOne(Pengembalian::class);
+        return $this->hasOne(Returns::class);
     }
 }
