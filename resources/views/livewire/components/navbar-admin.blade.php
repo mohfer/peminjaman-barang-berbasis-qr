@@ -1,4 +1,4 @@
-<div>
+<div class="w-full">
     <nav class="bg-[#40C08C] p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             @if (request()->routeIs('dashboard-admin') === true)
@@ -11,7 +11,6 @@
                     {{ $title }}
                 </ul>
             @endif
-            {{--  --}}
             @if (request()->routeIs('users'))
                 <button href="{{ route('dashboard-admin') }}" wire:navigate
                     class="text-white hover:bg-[#39ad7e] hover:text-white px-3 py-2 rounded-md font-medium">
@@ -40,13 +39,4 @@
             @endif
         </div>
     </nav>
-    {{-- <div class="flex space-x-4">
-                <button href="{{ route('users') }}" wire:navigate
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    User
-                </button>
-                <button href="{{ route('users') }}" wire:navigate
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                    Barang
-                </button> --}}
 </div>

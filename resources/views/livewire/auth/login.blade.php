@@ -1,6 +1,6 @@
-<div>
+<div class="min-h-screen">
     <x-notify::notify />
-    <div class="h-screen flex justify-center items-center">
+    <div class="flex justify-center items-center">
         <div class="w-4/5 lg:w-full">
             <form wire:submit.prevent="login" class="max-w-sm mx-auto p-6 bg-[#D4EAE6] shadow-md rounded-lg border">
                 @csrf

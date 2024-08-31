@@ -14,7 +14,7 @@
     @if (request()->routeIs('login') === false)
         <livewire:components.navbar-admin />
     @endif
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 my-8">
         {{ $slot }}
     </div>
     @if (request()->routeIs('login') === false)

@@ -1,6 +1,6 @@
-<div>
-    <div class="flex justify-center items-center h-screen">
-        <div class="flex bg-[#D4EAE6] p-6 rounded-lg shadow-lg sm:w-2/3 w-full h-auto flex-col md:flex-row">
+<div class="min-h-screen">
+    <div class="flex justify-center items-center">
+        <div class="flex bg-[#D4EAE6] p-6 rounded-lg shadow-lg sm:w-2/3 w-full flex-col md:flex-row">
             <div
                 class="w-full md:w-1/3 flex flex-col items-center justify-center bg-white rounded-md p-4 sm:flex-col sm:flex-direction-column">
                 <div
