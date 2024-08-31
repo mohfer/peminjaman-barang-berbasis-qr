@@ -31,7 +31,7 @@ class CreateUser extends Component
         $validatedData['password'] = $password;
 
         User::create($validatedData);
-        // Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
+        Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
 
         notify()->success('User Berhasil Ditambah');
         return $this->redirect(route('users'), navigate: true);
