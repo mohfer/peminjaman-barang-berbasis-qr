@@ -21,6 +21,7 @@
 
             <div class="w-full md:w-2/3 flex flex-col justify-center gap-4 pl-4 pr-4">
                 <form wire:submit.prevent='update' class="flex flex-col justify-center gap-2">
+                    <div wire:dirty>Unsaved changes...</div>
                     <input type="text" placeholder="Kode" wire:model='code'
                         class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600">
                     @error('code')

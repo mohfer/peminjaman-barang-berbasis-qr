@@ -17,7 +17,7 @@ class CreateItem extends Component
     public $borrow_qr;
     public $return_qr;
 
-    #[Validate('required|unique:items,code')]
+    #[Validate('required|unique:items')]
     public $code, $name;
 
     #[Validate('required')]
@@ -27,14 +27,17 @@ class CreateItem extends Component
 
     public function save()
     {
-        $this->code = strtoupper($this->code);
+        $code = strtoupper($this->code);
+        $cleanCode = str_replace([' ', '-'], '', $code);
+
+        $this->code = $cleanCode;
         $this->name = ucwords($this->name);
+        $this->token = strtolower(Str::random(10));
 
         $validatedData = $this->validate();
 
-        $this->token = strtolower(Str::random(10));
-
         $validatedData['token'] = $this->token;
+
         Item::create($validatedData);
 
         $this->dispatch('showToast', 'Data created successfully!', 'success');
@@ -48,8 +51,8 @@ class CreateItem extends Component
     public function download()
     {
         $name = strtoupper($this->name);
-        $removeSpacingCapitalize = str_replace(' ', '_', $name);
-        $finalName = $removeSpacingCapitalize . '_' . date('Y_m_d') . '.pdf';
+        $cleanName = str_replace(' ', '_', $name);
+        $finalName = $cleanName . '_' . date('Y_m_d') . '.pdf';
 
         $qrCodeBorrow = base64_encode(QrCode::format('png')->size(256)->generate($this->borrow_qr));
         $qrCodeReturn = base64_encode(QrCode::format('png')->size(256)->generate($this->return_qr));

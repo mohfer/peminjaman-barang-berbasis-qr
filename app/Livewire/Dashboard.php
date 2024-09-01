@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire;
 
 use Livewire\Component;
 
-class DashboardAdmin extends Component
+class Dashboard extends Component
 {
 
     public $title = 'Dashboard';
@@ -12,6 +12,6 @@ class DashboardAdmin extends Component
     public function render()
     {
         view()->share('title', $this->title);
-        return view('livewire.admin.dashboard-admin');
+        return view('livewire.dashboard');
     }
 }

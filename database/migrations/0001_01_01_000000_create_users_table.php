@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('phone');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('token')->unique();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

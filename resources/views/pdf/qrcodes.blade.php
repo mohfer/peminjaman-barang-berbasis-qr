@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Codes</title>
+    <title>{{ $name }}</title>
     <style>
         .qr-container {
             display: flex;

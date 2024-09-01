@@ -22,14 +22,14 @@
                         <h2 class="font-bold text-xl">{{ $user->name }}</h2>
                         <p class="text-gray-700">{{ $user->nim }}</p>
                     </div>
-                    <div class="flex justify-center mt-4">
+                    <div class="flex justify-center mt-4 text-center">
                         <a
                             class="bg-[#39A0FF] hover:bg-[#1991ff] text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline">Info</a>
                     </div>
                     <div class="flex justify-center mt-4">
-                        <a href="{{ route('update-users', $user->id) }}" wire:navigate
+                        <a href="{{ route('update-users', $user->token) }}" wire:navigate
                             class="bg-[#1BC300] hover:bg-[#18af00] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Update</a>
-                        <button wire:click='delete({{ $user->id }})'
+                        <button wire:click="delete('{{ $user->token }}')"
                             wire:confirm="Are you sure you want to delete this user?"
                             class="bg-[#FF3939] hover:bg-[#ff1919] text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline ml-4">Delete</button>
                     </div>

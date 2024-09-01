@@ -20,9 +20,9 @@ class UpdateItem extends Component
 
     protected $token;
 
-    public function mount($id)
+    public function mount($token)
     {
-        $this->item = Item::findOrFail($id);
+        $this->item = Item::where('token', $token)->firstOrFail();
         $this->code = $this->item->code;
         $this->name = $this->item->name;
         $this->type = $this->item->type;
@@ -33,7 +33,10 @@ class UpdateItem extends Component
 
     public function update()
     {
-        $this->code = strtoupper($this->code);
+        $code = strtoupper($this->code);
+        $cleanCode = str_replace([' ', '-'], '', $code);
+
+        $this->code = $cleanCode;
         $this->name = ucwords($this->name);
 
         $validatedData = $this->validate([

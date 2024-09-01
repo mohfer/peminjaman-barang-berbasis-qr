@@ -1,7 +1,7 @@
 <div class="w-full">
     <nav class="bg-[#40C08C] p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            @if (request()->routeIs('dashboard-admin') === true)
+            @if (request()->routeIs('dashboard') === true)
                 <ul class="text-white text-md font-semibold">
                     Hi, {{ auth()->user()->name }}
                 </ul>
@@ -12,7 +12,7 @@
                 </ul>
             @endif
             @if (request()->routeIs('users'))
-                <a href="{{ route('dashboard-admin') }}" wire:navigate
+                <a href="{{ route('dashboard') }}" wire:navigate
                     class="text-white hover:bg-[#39ad7e] hover:text-white px-3 py-2 rounded-md font-medium">
                     <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
                     </svg>
                 </a>
             @elseif (request()->routeIs('items'))
-                <a href="{{ route('dashboard-admin') }}" wire:navigate
+                <a href="{{ route('dashboard') }}" wire:navigate
                     class="text-white hover:bg-[#39ad7e] hover:text-white px-3 py-2 rounded-md font-medium">
                     <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                 </a>
             @endif
 
-            @if (request()->routeIs('dashboard-admin') === true)
+            @if (request()->routeIs('dashboard') === true)
                 <button wire:click='logout'
                     class="text-white hover:bg-[#39ad7e] hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     Logout

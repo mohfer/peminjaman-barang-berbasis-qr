@@ -13,9 +13,9 @@ class UpdateUser extends Component
 
     public $user, $nim, $phone, $email, $name, $gender, $fakultas, $prodi;
 
-    public function mount($id)
+    public function mount($token)
     {
-        $this->user = User::findOrFail($id);
+        $this->user = User::where('token', $token)->firstOrFail();
         $this->nim = $this->user->nim;
         $this->name = $this->user->name;
         $this->gender = $this->user->gender;

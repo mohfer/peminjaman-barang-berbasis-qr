@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '083851522259',
             'email' => 'verdian352@gmail.com',
             'password' => bcrypt('password'),
+            'token' => strtolower(Str::random(10)),
         ]);
 
         DB::table('items')->insert([

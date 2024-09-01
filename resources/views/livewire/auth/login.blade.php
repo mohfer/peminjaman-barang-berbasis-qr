@@ -18,10 +18,10 @@
                     }">
                         <input type="text" placeholder="Nim" x-model="nim" wire:model.defer="nim"
                             @input="validateInput($event)" @keypress="$event.charCode >= 48 && $event.charCode <= 57"
-                            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm">
+                            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm">
                     </div>
                     @error('nim')
-                        <div class="text-red-500 text-sm">
+                        <div class="text-red-500 text-sm mt-2">
                             {{ $message }}
                         </div>
                     @enderror
@@ -29,7 +29,7 @@
 
                 <div x-data="{ showPassword: false }" class="mb-6 relative">
                     <input :type="showPassword ? 'text' : 'password'" id="password" wire:model="password"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
                         placeholder="Password">
                     <button @click="showPassword = !showPassword" type="button"
                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
@@ -47,7 +47,7 @@
                         </svg>
                     </button>
                     @error('password')
-                        <div class="text-red-500 text-sm">
+                        <div class="text-red-500 text-sm mt-2">
                             {{ $message }}
                         </div>
                     @enderror

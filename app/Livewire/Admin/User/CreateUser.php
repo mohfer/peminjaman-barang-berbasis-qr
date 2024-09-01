@@ -23,12 +23,17 @@ class CreateUser extends Component
     #[Validate('required')]
     public $name, $gender, $fakultas, $prodi;
 
+    protected $token;
+
     public function save()
     {
         $this->name = ucwords($this->name);
         $this->prodi = ucwords($this->prodi);
+        $this->token = strtolower(Str::random(10));
 
         $validatedData = $this->validate();
+
+        $validatedData['token'] = $this->token;
 
         $password = Str::random(10);
         $sender = Auth::user();

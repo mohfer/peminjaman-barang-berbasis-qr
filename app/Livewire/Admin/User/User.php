@@ -14,9 +14,9 @@ class User extends Component
 
     public $search = '';
 
-    public function delete($id)
+    public function delete($token)
     {
-        $user = ModelsUser::findOrFail($id);
+        $user = ModelsUser::where('token', $token)->firstOrFail();
         $user->delete();
 
         $this->dispatch('showToast', 'Data deleted successfully!', 'success');

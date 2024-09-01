@@ -14,7 +14,7 @@ class Returns extends Model
         'id'
     ];
 
-    public function borrowing(): HasOne
+    public function borrow(): HasOne
     {
         return $this->hasOne(Borrow::class);
     }

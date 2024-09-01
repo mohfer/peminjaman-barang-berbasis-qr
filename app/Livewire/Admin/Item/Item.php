@@ -14,9 +14,9 @@ class Item extends Component
 
     public $search = '';
 
-    public function delete($id)
+    public function delete($token)
     {
-        $item = ModelsItem::findOrFail($id);
+        $item = ModelsItem::where('token', $token)->firstOrFail();
         $item->delete();
 
         $this->dispatch('showToast', 'Data deleted successfully!', 'success');

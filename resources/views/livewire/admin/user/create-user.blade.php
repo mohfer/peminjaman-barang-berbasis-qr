@@ -1,4 +1,5 @@
 <div class="min-h-screen">
+    <livewire:components.toast-notification />
     <div class="flex justify-center items-center">
         <div class="flex bg-[#D4EAE6] p-6 rounded-lg shadow-lg sm:w-2/3 w-full flex-col md:flex-row">
             <div
@@ -19,7 +20,7 @@
                 </div>
             </div>
 
-            <form wire:submit.prevent='save' class="w-full md:w-2/3 flex flex-col justify-center gap-2 pl-4 pr-4 mt-4">
+            <form wire:submit.prevent='save' class="w-full md:w-2/3 flex flex-col justify-center gap-2 pl-4 pr-4 mt-4 sm:mt-0">
                 <div x-data="{
                     nim: @entangle('nim'),
                     validateInput(event) {
