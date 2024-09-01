@@ -16,8 +16,8 @@ class Item extends Model
 
     public $timestamps = false;
 
-    public function borrowings(): HasMany
+    public function borrows(): HasMany
     {
-        return $this->hasMany(Borrowing::class);
+        return $this->hasMany(Borrow::class);
     }
 }

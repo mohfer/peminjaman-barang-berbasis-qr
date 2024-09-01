@@ -16,6 +16,6 @@ class Returns extends Model
 
     public function borrowing(): HasOne
     {
-        return $this->hasOne(Borrowing::class);
+        return $this->hasOne(Borrow::class);
     }
 }

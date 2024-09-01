@@ -14,17 +14,20 @@ class CreateUser extends Component
 {
     public $title = 'Create User';
 
-    #[Validate('required|numeric|max:11|unique:users')]
-    public $nim;
+    #[Validate('required|numeric|digits_between:1,12|unique:users')]
+    public $nim, $phone;
 
     #[Validate('required|unique:users')]
-    public $phone, $email;
+    public $email;
 
     #[Validate('required')]
     public $name, $gender, $fakultas, $prodi;
 
     public function save()
     {
+        $this->name = ucwords($this->name);
+        $this->prodi = ucwords($this->prodi);
+
         $validatedData = $this->validate();
 
         $password = Str::random(10);
@@ -36,8 +39,7 @@ class CreateUser extends Component
         User::create($validatedData);
         // Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
 
-        notify()->success('User Berhasil Ditambah');
-        return $this->redirect(route('users'), navigate: true);
+        $this->dispatch('showToast', 'Data created successfully!', 'success');
 
         $this->clear();
     }

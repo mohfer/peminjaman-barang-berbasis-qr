@@ -19,7 +19,7 @@ class User extends Component
         $user = ModelsUser::findOrFail($id);
         $user->delete();
 
-        notify()->success('User berhasil dihapus');
+        $this->dispatch('showToast', 'Data deleted successfully!', 'success');
     }
 
     public function updatingSearch()

@@ -1,5 +1,5 @@
 <div class="min-h-screen">
-    <x-notify::notify />
+    <livewire:components.toast-notification />
     <div class="flex justify-center items-center">
         <div class="flex bg-[#D4EAE6] p-6 rounded-lg shadow-lg sm:w-2/3 w-full flex-col md:flex-row gap-6">
             <div class="w-full md:w-1/3 flex flex-col items-center justify-center bg-white rounded-md p-4">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="w-full md:w-2/3 flex flex-col justify-center gap-4 pl-4 pr-4">
-                <form wire:submit.prevent='save' class="flex flex-col justify-center gap-4">
+                <form wire:submit.prevent='save' class="flex flex-col justify-center gap-2">
                     <input type="text" placeholder="Kode" wire:model='code'
                         class="bg-[#7EB6AD] text-white placeholder-white p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600">
                     @error('code')
@@ -83,7 +83,7 @@
                 @session('qr')
                     <div class="flex flex-col md:flex-row justify-center items-center gap-6 mt-6">
                         <div class="flex flex-col items-center mb-4 md:mb-0">
-                            {!! QrCode::size(256)->generate($this->borrowing_qr) !!}
+                            {!! QrCode::size(256)->generate($this->borrow_qr) !!}
                             <p class="text-gray-700 text-sm mt-2">Peminjaman</p>
                         </div>
                         <div class="flex flex-col items-center">

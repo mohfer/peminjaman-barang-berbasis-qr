@@ -1,5 +1,5 @@
 <div class="min-h-screen">
-    <x-notify::notify />
+    <livewire:components.toast-notification />
     <div class="flex justify-center items-center">
         <div class="flex bg-[#D4EAE6] p-6 rounded-lg shadow-lg sm:w-2/3 w-full h-auto flex-col md:flex-row">
             <div

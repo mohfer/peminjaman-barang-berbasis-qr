@@ -1,5 +1,5 @@
 <div class="min-h-screen">
-    <x-notify::notify />
+    <livewire:components.toast-notification />
     <div class="flex justify-center my-4 mx-2">
         <input type="text"
             class="bg-[#D4EAE6] p-2 rounded-full w-full sm:w-1/3 px-4 focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"

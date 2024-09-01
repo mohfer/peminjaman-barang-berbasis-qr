@@ -7,31 +7,40 @@ use Livewire\Component;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CreateItem extends Component
 {
     public $title = 'Create Item';
 
-    public $borrowing_qr;
+    public $borrow_qr;
     public $return_qr;
 
-    #[Validate('required|unique:items')]
+    #[Validate('required|unique:items,code')]
     public $code, $name;
 
     #[Validate('required')]
     public $type, $qty;
 
+    protected $token;
+
     public function save()
     {
+        $this->code = strtoupper($this->code);
+        $this->name = ucwords($this->name);
+
         $validatedData = $this->validate();
 
+        $this->token = strtolower(Str::random(10));
+
+        $validatedData['token'] = $this->token;
         Item::create($validatedData);
 
-        notify()->success('Item Berhasil Ditambah');
+        $this->dispatch('showToast', 'Data created successfully!', 'success');
 
-        $this->borrowing_qr = URL::to('borrowing/' . strtolower($this->code));
-        $this->return_qr = URL::to('return/' . strtolower($this->code));
+        $this->borrow_qr = URL::to('borrow/' . $this->token);
+        $this->return_qr = URL::to('return/' . $this->token);
 
         session()->flash('qr');
     }
@@ -42,10 +51,12 @@ class CreateItem extends Component
         $removeSpacingCapitalize = str_replace(' ', '_', $name);
         $finalName = $removeSpacingCapitalize . '_' . date('Y_m_d') . '.pdf';
 
-        $qrCodeBorrowing = base64_encode(QrCode::format('png')->size(256)->generate($this->borrowing_qr));
+        $qrCodeBorrow = base64_encode(QrCode::format('png')->size(256)->generate($this->borrow_qr));
         $qrCodeReturn = base64_encode(QrCode::format('png')->size(256)->generate($this->return_qr));
 
-        $pdf = Pdf::loadView('pdf.qrcodes', compact('qrCodeBorrowing', 'qrCodeReturn', 'name'));
+        $pdf = Pdf::loadView('pdf.qrcodes', compact('qrCodeBorrow', 'qrCodeReturn', 'name'));
+
+        $this->clear();
 
         return response()->streamDownload(
             fn() => print($pdf->output()),

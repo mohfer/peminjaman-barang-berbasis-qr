@@ -11,16 +11,7 @@ class UpdateUser extends Component
 {
     public $title = 'Update User';
 
-    public $user;
-
-    #[Validate('required|numeric|max:11|unique:users')]
-    public $nim;
-
-    #[Validate('required|unique:users')]
-    public $phone, $email;
-
-    #[Validate('required')]
-    public $name, $gender, $fakultas, $prodi;
+    public $user, $nim, $phone, $email, $name, $gender, $fakultas, $prodi;
 
     public function mount($id)
     {
@@ -36,9 +27,12 @@ class UpdateUser extends Component
 
     public function update()
     {
+        $this->name = ucwords($this->name);
+        $this->prodi = ucwords($this->prodi);
+
         $validatedData = $this->validate([
-            'nim' => ['required', 'max:11', Rule::unique('users')->ignore($this->user->id)],
-            'phone' => ['required', Rule::unique('users')->ignore($this->user->id)],
+            'nim' => ['required', 'numeric', 'digits_between:1,12', Rule::unique('users')->ignore($this->user->id)],
+            'phone' => ['required', 'numeric', 'digits_between:1,12', Rule::unique('users')->ignore($this->user->id)],
             'email' => ['required', Rule::unique('users')->ignore($this->user->id)],
             'name' => 'required',
             'gender' => 'required',
@@ -48,7 +42,7 @@ class UpdateUser extends Component
 
         $this->user->update($validatedData);
 
-        notify()->success('User berhasil diupdate!');
+        $this->dispatch('showToast', 'Data updated successfully!', 'success');
     }
 
     public function render()

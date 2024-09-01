@@ -1,4 +1,5 @@
 <div class="min-h-screen">
+    <livewire:components.toast-notification />
     <div class="flex flex-wrap justify-center items-center gap-3 my-5 lg:my-0">
         <div class="md:w-1/2 xl:w-1/3 bg-[#D4EAE6] hover:bg-[#b6dbd4] p-4 mb-4 rounded-md">
             <a href="{{ route('users') }}" wire:navigate>

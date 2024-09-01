@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('returns', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('borrowing_id');
+            $table->string('code')->unique();
+            $table->string('name')->unique();
+            $table->string('type');
             $table->integer('qty');
-            $table->dateTime('time');
-
-            $table->foreign('borrowing_id')->references('id')->on('borrowings')->onDelete('cascade');
+            $table->string('token')->unique();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('returns');
+        Schema::dropIfExists('items');
     }
 };

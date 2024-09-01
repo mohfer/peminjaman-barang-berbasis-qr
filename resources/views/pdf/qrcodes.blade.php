@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>QR Codes</title>
     <style>
         .qr-container {
@@ -37,7 +36,7 @@
 <body>
     <div class="qr-container">
         <h1 class="label">{{ $name }}</h1>
-        <img width="500px" height="500px" src="data:image/png;base64,{{ $qrCodeBorrowing }}" alt="QR Code Borrowing">
+        <img width="500px" height="500px" src="data:image/png;base64,{{ $qrCodeBorrow }}" alt="QR Code Borrow">
         <h1 class="label">PEMINJAMAN</h1>
     </div>
 

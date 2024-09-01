@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Borrowing extends Model
+class Borrow extends Model
 {
     use HasFactory;
 
-    protected $table = 'borrowings';
+    protected $table = 'borrows';
 
     protected $guarded = [
         'id'

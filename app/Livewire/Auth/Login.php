@@ -18,10 +18,9 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt(['nim' => $this->nim, 'password' => $this->password])) {
-            notify()->success('Login Berhasil');
             return $this->redirect(route('dashboard-admin'), navigate: true);
         } else {
-            notify()->error('NIM atau Password Tidak Sesuai');
+            $this->dispatch('showToast', 'Login failed!', 'error');
             $this->password = '';
         }
     }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,13 +18,13 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         DB::table('users')->insert([
-            'nim' => 112233,
+            'nim' => 3337240025,
             'name' => 'Mohamad Ferdiansyah',
             'gender' => 'Laki-laki',
             'fakultas' => 'Fakultas Teknik',
             'prodi' => 'Informatika',
-            'phone' => '080808080808',
-            'email' => 'admin@gmail.com',
+            'phone' => '083851522259',
+            'email' => 'verdian352@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
@@ -32,9 +33,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Infocus',
             'type' => 'Peralatan Presentasi',
             'qty' => 20,
+            'token' => strtolower(Str::random(10)),
         ]);
 
-        DB::table('borrowings')->insert([
+        DB::table('borrows')->insert([
             'item_id' => 1,
             'user_id' => 1,
             'qty' => '5',

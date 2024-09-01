@@ -19,7 +19,7 @@ class Item extends Component
         $item = ModelsItem::findOrFail($id);
         $item->delete();
 
-        notify()->success('Item berhasil dihapus');
+        $this->dispatch('showToast', 'Data deleted successfully!', 'success');
     }
 
     public function updatingSearch()
