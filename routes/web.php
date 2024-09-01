@@ -12,7 +12,7 @@ use App\Livewire\Admin\User\UpdateUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
-    return redirect('/auth/login');
+    return redirect()->route('login');
 });
 
 Route::get('/auth/login', Login::class)->name('login')->middleware(RedirectIfAuthenticated::class);

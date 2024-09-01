@@ -13,12 +13,15 @@ class Login extends Component
     #[Validate('required')]
     public $nim, $password;
 
+    protected $redirectTo = '/dashboard';
+
     public function login()
     {
         $this->validate();
 
         if (Auth::attempt(['nim' => $this->nim, 'password' => $this->password])) {
-            return $this->redirect(route('dashboard'), navigate: true);
+            // return $this->redirect(route('dashboard'), navigate: true);
+            return redirect()->intended();
         } else {
             $this->dispatch('showToast', 'Login failed!', 'error');
             $this->password = '';
