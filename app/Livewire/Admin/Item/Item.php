@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Item;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Item as ModelsItem;
+use Illuminate\Support\Facades\Storage;
 
 class Item extends Component
 {
@@ -16,7 +17,14 @@ class Item extends Component
 
     public function delete($token)
     {
-        $item = ModelsItem::where('token', $token)->firstOrFail();
+        $item = ModelsItem::where('token', $token)->first();
+
+        $filename = $item->image;
+
+        if ($filename && Storage::exists('public/images/items/' . $filename)) {
+            Storage::delete('public/images/items/' . $filename);
+        }
+
         $item->delete();
 
         $this->dispatch('showToast', 'Data deleted successfully!', 'success');
@@ -32,7 +40,10 @@ class Item extends Component
         view()->share('title', $this->title);
 
         $item = ModelsItem::where('name', 'LIKE', '%' . $this->search . '%')
-            ->orWhere('code', 'LIKE', '%' . $this->search . '%')->simplePaginate(5);
+        ->orWhere('code', 'LIKE', '%' . $this->search . '%')
+        ->orWhere('type', 'LIKE', '%' . $this->search . '%')
+        ->orderBy('name', 'asc')
+        ->paginate(5);
 
         return view('livewire.admin.item.item', [
             'items' => $item,

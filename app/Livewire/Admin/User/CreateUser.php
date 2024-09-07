@@ -6,13 +6,19 @@ use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use App\Mail\LoginCredential;
+use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CreateUser extends Component
 {
+    use WithFileUploads;
+
     public $title = 'Create User';
+
+    #[Validate('nullable|image|mimes:png,jpg,jpeg|max:2048')]
+    public $image;
 
     #[Validate('required|numeric|digits_between:1,12|unique:users')]
     public $nim, $phone;
@@ -21,7 +27,7 @@ class CreateUser extends Component
     public $email;
 
     #[Validate('required')]
-    public $name, $gender, $fakultas, $prodi;
+    public $name, $gender, $fakultas, $prodi, $role;
 
     protected $token;
 
@@ -41,8 +47,14 @@ class CreateUser extends Component
         $nim = $validatedData['nim'];
         $validatedData['password'] = $password;
 
+        if ($this->image) {
+            $filename = $this->nim . '_' . $this->name . '.' . $this->image->extension();
+            $this->image->storeAs('public/images/users', $filename);
+            $validatedData['image'] = $filename;
+        }
+
         User::create($validatedData);
-        // Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
+        Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
 
         $this->dispatch('showToast', 'Data created successfully!', 'success');
 
@@ -51,6 +63,7 @@ class CreateUser extends Component
 
     public function clear()
     {
+        $this->image = '';
         $this->nim = '';
         $this->name = '';
         $this->gender = '';
@@ -58,6 +71,7 @@ class CreateUser extends Component
         $this->email = '';
         $this->fakultas = '';
         $this->prodi = '';
+        $this->role = '';
     }
 
     public function render()

@@ -20,7 +20,6 @@ class Login extends Component
         $this->validate();
 
         if (Auth::attempt(['nim' => $this->nim, 'password' => $this->password])) {
-            // return $this->redirect(route('dashboard'), navigate: true);
             return redirect()->intended();
         } else {
             $this->dispatch('showToast', 'Login failed!', 'error');

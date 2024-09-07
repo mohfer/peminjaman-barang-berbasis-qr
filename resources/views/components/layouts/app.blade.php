@@ -5,15 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <title>{{ $title ?? 'Techtonics' }} | Techtonics</title>
 </head>
 
 <body class="bg-gradient-to-t from-[#005477] to-[#009F9C] min-h-screen">
     <livewire:components.toast-notification />
     @if (request()->routeIs('login') === false)
-        <livewire:components.navbar-admin />
+        <livewire:components.navbar />
     @endif
-    <div class="container mx-auto px-4 my-8">
+    <div class=" mx-auto px-4 mt-24 mb-20 md:mb-8">
         {{ $slot }}
     </div>
     @if (request()->routeIs('login') === false)

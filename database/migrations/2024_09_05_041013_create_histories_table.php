@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('returns', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('borrow_id');
+            $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('qty');
             $table->dateTime('time');
+            $table->string('status');
 
-            $table->foreign('borrow_id')->references('id')->on('borrows')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('returns');
+        Schema::dropIfExists('histories');
     }
 };

@@ -4,18 +4,24 @@ namespace App\Livewire\Admin\Item;
 
 use App\Models\Item;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CreateItem extends Component
 {
+    use WithFileUploads;
+
     public $title = 'Create Item';
 
     public $borrow_qr;
     public $return_qr;
+
+    #[Validate('nullable|image|mimes:png,jpg,jpeg|max:2048')]
+    public $image;
 
     #[Validate('required|unique:items')]
     public $code, $name;
@@ -37,6 +43,12 @@ class CreateItem extends Component
         $validatedData = $this->validate();
 
         $validatedData['token'] = $this->token;
+
+        if ($this->image) {
+            $filename = $this->code . '_' . $this->name . '.' . $this->image->extension();
+            $this->image->storeAs('public/images/items', $filename);
+            $validatedData['image'] = $filename;
+        }
 
         Item::create($validatedData);
 
@@ -69,6 +81,7 @@ class CreateItem extends Component
 
     public function clear()
     {
+        $this->image = '';
         $this->code = '';
         $this->name = '';
         $this->type = '';

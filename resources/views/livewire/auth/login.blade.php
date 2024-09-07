@@ -1,5 +1,39 @@
 <div class="min-h-screen">
     <livewire:components.toast-notification />
+    @if (session()->has('success'))
+        <div aria-live="assertive" id="toast-notification" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+            class="pointer-events-none fixed inset-x-0 bottom-0 px-4 pb-4 sm:px-6 sm:pb-6 mb-20 md:mb-4">
+            <div class="flex justify-center sm:justify-end">
+                <div
+                    class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                <p class="text-sm font-medium text-gray-900">{{ Session::get('success') }}</p>
+                            </div>
+                            <div class="ml-4 flex flex-shrink-0">
+                                <button type="button" @click="show = false"
+                                    class="inline-flex rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="flex justify-center items-center">
         <div class="w-4/5 lg:w-full">
             <form wire:submit.prevent="login" class="max-w-sm mx-auto p-6 bg-[#D4EAE6] shadow-md rounded-lg border">
@@ -16,9 +50,9 @@
                             this.nim = cleanedValue;
                         }
                     }">
-                        <input type="text" placeholder="Nim" x-model="nim" wire:model.defer="nim"
+                        <input type="text" placeholder="Nim" x-model="nim" wire:model.defer="nim" tabindex="1"
                             @input="validateInput($event)" @keypress="$event.charCode >= 48 && $event.charCode <= 57"
-                            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm">
+                            class="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm">
                     </div>
                     @error('nim')
                         <div class="text-red-500 text-sm mt-2">
@@ -29,8 +63,8 @@
 
                 <div x-data="{ showPassword: false }" class="mb-6 relative">
                     <input :type="showPassword ? 'text' : 'password'" id="password" wire:model="password"
-                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
-                        placeholder="Password">
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-[#31867C] focus:border-[#31867C] sm:text-sm"
+                        placeholder="Password" tabindex="2">
                     <button @click="showPassword = !showPassword" type="button"
                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
                         <svg x-show="!showPassword" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24"
@@ -53,12 +87,12 @@
                     @enderror
                 </div>
 
-                <button wire:loading.remove wire:target='login' type="submit"
-                    class="w-full mt-12 px-4 py-2 bg-[#40C08C] text-white font-semibold rounded-md shadow hover:bg-[#39ad7e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button wire:loading.remove wire:target='login' type="submit" tabindex="3"
+                    class="w-full mt-12 px-4 py-2 bg-[#1BC300] hover:bg-[#18af00] text-white font-semibold rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Login
                 </button>
                 <button wire:loading wire:target='login' type="submit"
-                    class="w-full mt-12 px-4 py-2 bg-[#40C08C] text-white font-semibold rounded-md shadow hover:bg-[#39ad7e] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Please
+                    class="w-full mt-12 px-4 py-2 bg-[#1BC300] hover:bg-[#18af00] text-white font-semibold rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Please
                     wait...
                 </button>
             </form>

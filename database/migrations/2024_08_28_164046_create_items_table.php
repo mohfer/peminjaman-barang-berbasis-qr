@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->integer('qty');
             $table->string('token')->unique();
+            $table->string('image')->nullable();
         });
     }
 

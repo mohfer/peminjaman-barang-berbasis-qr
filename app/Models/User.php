@@ -48,6 +48,11 @@ class User extends Authenticatable
 
     public function borrows(): HasMany
     {
-        return $this->hasMany(Borrow::class, 'id_user');
+        return $this->hasMany(Borrow::class, 'user_id');
+    }
+
+    public function histories(): HasMany
+    {
+        return $this->hasMany(History::class);
     }
 }

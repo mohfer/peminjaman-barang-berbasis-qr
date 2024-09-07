@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\History;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
@@ -19,5 +20,10 @@ class Item extends Model
     public function borrows(): HasMany
     {
         return $this->hasMany(Borrow::class);
+    }
+
+    public function histories(): HasMany
+    {
+        return $this->hasMany(History::class);
     }
 }
