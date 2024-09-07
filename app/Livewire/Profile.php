@@ -56,7 +56,11 @@ class Profile extends Component
     }
     public function changePassword()
     {
-        $this->validate();
+        $this->validate([
+            'oldPassword' => 'required',
+            'newPassword' => 'required',
+            'confirmPassword' => 'required|same:newPassword',
+        ]);
 
         if (!$this->user) {
             return false;
