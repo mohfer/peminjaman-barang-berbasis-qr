@@ -85,8 +85,7 @@
                         </button>
                     </div>
                     <div class="flex md:hidden">
-                        <a href="{{ route('profile') }}" wire:navigate
-                            class="text-white hover:text-white bg-[#009F9C] rounded-full">
+                        <a href="{{ route('profile') }}" class="text-white hover:text-white bg-[#009F9C] rounded-full">
                             @if ($this->image)
                                 <img src="{{ asset('storage/images/users/' . $this->image) }}" alt="Profile Picture"
                                     class="rounded-full w-8 h-8 object-cover">
