@@ -29,6 +29,10 @@
                         </div>
                     </label>
                 @endif
+
+                @error('image')
+                    <span class="error text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
             <input type="nim" placeholder="Nim" wire:model='nim' disabled
                 class="w-full bg-[#7EB6AD] text-white placeholder-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600">

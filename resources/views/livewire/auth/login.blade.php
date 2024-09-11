@@ -1,6 +1,6 @@
 <div class="min-h-screen">
     <livewire:components.toast-notification />
-    @if (session()->has('success'))
+    @session('success')
         <div aria-live="assertive" id="toast-notification" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
             class="pointer-events-none fixed inset-x-0 bottom-0 px-4 pb-4 sm:px-6 sm:pb-6 mb-20 md:mb-4">
             <div class="flex justify-center sm:justify-end">
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endsession
     <div class="flex justify-center items-center">
         <div class="w-4/5 lg:w-full">
             <form wire:submit.prevent="login" class="max-w-sm mx-auto p-6 bg-[#D4EAE6] shadow-md rounded-lg border">

@@ -56,13 +56,4 @@
             </form>
         </div>
     </div>
-    <script>
-        document.addEventListener('livewire:initialized', () => {
-            Livewire.on('delayedRedirect', (url) => {
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 2000);
-            });
-        });
-    </script>
 </div>

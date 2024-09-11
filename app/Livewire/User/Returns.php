@@ -52,6 +52,10 @@ class Returns extends Component
             ->sum('qty');
 
         $this->final = $this->qtyBorrow - $this->qtyReturn;
+
+        if ($this->final <= 0) {
+            redirect()->route('dashboard')->with('error', 'Item not borrowed or already returned');
+        }
     }
 
     public function return()
@@ -112,8 +116,7 @@ class Returns extends Component
         ]);
 
         if ($remainingQty > 0) {
-            $this->dispatch('showToast', 'Item returned successfully!', 'success');
-            $this->dispatch('delayedRedirect', route('dashboard'));
+            return redirect()->route('dashboard')->with('success', 'Item returned successfully!');
         } else {
             $this->dispatch('showToast', 'Quantity not enough!', 'error');
         }

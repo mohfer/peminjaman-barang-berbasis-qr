@@ -1,5 +1,5 @@
 <div class="min-h-screen">
-    @if (session()->has('error'))
+    @session('error')
         <div aria-live="assertive" id="toast-notification" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
             class="pointer-events-none fixed inset-x-0 bottom-0 px-4 pb-4 sm:px-6 sm:pb-6 mb-20 md:mb-4">
             <div class="flex justify-center sm:justify-end">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endsession
     <div class="flex justify-center bg-[#D4EAE6] h-1/2 rounded-lg p-4 z-0">
         <div id="reader" class="w-96 block rounded-lg"></div>
     </div>

@@ -28,6 +28,10 @@ class Borrow extends Component
         $this->type = $this->item->type;
         $this->qtyItem = $this->item->qty;
         $this->image = $this->item->image;
+
+        if ($this->qtyItem <= 0) {
+            redirect()->route('dashboard')->with('error', 'Item not available!');
+        }
     }
 
     public function borrow()
@@ -59,9 +63,7 @@ class Borrow extends Component
         $this->item->qty -= $this->qty;
         $this->item->save();
 
-        $this->dispatch('showToast', 'Item borrowed successfully!', 'success');
-
-        $this->dispatch('delayedRedirect', route('dashboard'));
+        return redirect()->route('dashboard')->with('success', 'Item borrowed successfully!');
     }
 
     public function render()
