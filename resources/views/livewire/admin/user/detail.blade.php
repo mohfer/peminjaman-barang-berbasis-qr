@@ -82,7 +82,7 @@
                     <h1 class="text-2xl font-bold text-gray-800">No data found!</h1>
                 </div>
             @else
-                <ul class="space-y-2">
+                <ul class="space-y-4">
                     @foreach ($stillBorrowedItems as $borrowedItem)
                         <div class="bg-[#D4EAE6] border border-gray-500 rounded-lg p-4 flex flex-col">
                             <h3 class="text-lg font-bold mb-2">{{ $borrowedItem['item']->name }}</h3>
@@ -132,7 +132,7 @@
                     <h1 class="text-2xl font-bold text-gray-800">No data found!</h1>
                 </div>
             @else
-                <ul class="space-y-2">
+                <ul class="space-y-4">
                     @foreach ($histories as $history)
                         <li class="bg-[#D4EAE6] rounded-lg p-4 border border-gray-500 flex flex-col">
                             <h3 class="text-lg font-bold mb-2">{{ $history->item->name }}</h3>

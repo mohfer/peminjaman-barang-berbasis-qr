@@ -17,7 +17,7 @@
 
     <div class="flex justify-center flex-wrap gap-3">
         @foreach ($users as $user)
-            <div class="w-full sm:w-1/ md:1/4 lg:w-1/6">
+            <div class="w-full sm:w-1/2 md:1/4 lg:w-1/6">
                 <div class="bg-[#D4EAE6] p-6 rounded-lg h-full">
                     <div class="flex justify-center mb-4">
                         @if ($user->image)

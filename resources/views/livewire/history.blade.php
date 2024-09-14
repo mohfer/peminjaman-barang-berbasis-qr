@@ -14,7 +14,7 @@
                     <h1 class="text-2xl font-bold text-white">No data found!</h1>
                 </div>
             @else
-                <ul class="space-y-2">
+                <ul class="space-y-4">
                     @foreach ($histories as $history)
                         <li class="bg-[#D4EAE6] rounded-lg p-4 shadow-md flex flex-col">
                             @can('admin')
