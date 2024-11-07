@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\Item;
 use App\Models\Borrow;
 use App\Models\Returns;
 use Livewire\Component;

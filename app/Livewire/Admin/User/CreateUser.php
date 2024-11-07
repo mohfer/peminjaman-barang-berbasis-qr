@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use App\Mail\LoginCredential;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -53,10 +55,18 @@ class CreateUser extends Component
             $validatedData['image'] = $filename;
         }
 
-        User::create($validatedData);
-        Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
+        DB::beginTransaction();
 
-        $this->dispatch('showToast', 'Data created successfully!', 'success');
+        try {
+            User::create($validatedData);
+            Mail::to($validatedData['email'])->send(new LoginCredential($sender, $recipient, $nim, $password));
+            DB::commit();
+            $this->dispatch('showToast', 'Data created successfully and email sent!', 'success');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Email sending failed: ' . $e->getMessage());
+            $this->dispatch('showToast', 'Data created successfully, but failed to send email. Please try again later.', 'error');
+        }
 
         $this->clear();
     }

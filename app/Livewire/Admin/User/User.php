@@ -5,15 +5,18 @@ namespace App\Livewire\Admin\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User as ModelsUser;
+use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\Storage;
 
 class User extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $title = 'Users';
 
     public $search = '';
+
+    public $queryString = [];
 
     public function delete($token)
     {

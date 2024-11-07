@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\History as ModelsHistory;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use App\Models\History as ModelsHistory;
 
 class History extends Component
 {

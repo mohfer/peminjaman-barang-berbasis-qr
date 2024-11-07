@@ -94,6 +94,19 @@ class DatabaseSeeder extends Seeder
             'token' => strtolower(Str::random(10)),
             'role' => 'user',
         ]);
+        
+        DB::table('users')->insert([
+            'nim' => 778899,
+            'name' => 'User 6',
+            'gender' => 'Laki-laki',
+            'fakultas' => 'Fakultas Teknik',
+            'prodi' => 'Sistem Informasi',
+            'phone' => '7890123456',
+            'email' => 'user6@gmail.com',
+            'password' => bcrypt('password'),
+            'token' => strtolower(Str::random(10)),
+            'role' => 'user',
+        ]);
 
         DB::table('items')->insert([
             'code' => 'INF001',

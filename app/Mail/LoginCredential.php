@@ -37,7 +37,7 @@ class LoginCredential extends Mailable
     {
         return new Envelope(
             subject: 'Login Credential',
-            from: new Address('noreply@jawaralist.my.id', 'Admin'),
+            from: new Address('no-reply@jawaralist.my.id', 'Admin'),
         );
     }
 
